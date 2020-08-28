@@ -24,7 +24,7 @@ def index(request):
         ice_link = f'<a href="icecream/{i}/"> Узнать состав</a>'
         icecreams += (f'<input type="radio" name ="icecream"'
                       f' required value="{icecream_db[i]["name"]}">{icecream_db[i]["name"]} <br>')
-        print (icecreams)
+        
     if request.method == 'POST':
         # Извлекли из запроса имя друга
         selected_friend = request.POST['friend']
