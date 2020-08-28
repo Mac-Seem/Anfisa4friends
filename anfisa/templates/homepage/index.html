@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+  </head>
+  <body>
+      <h1>Анфиса для друзей</h1>
+       <img src="https://pictures.s3.yandex.net/resources/anfisa_1594642601.png">
+       <br>
+      <p>
+        {{ friend_output }}
+      </p>
+      <p>
+        {{ city_weather }}
+      </p>
+      <form action="/" method="post">
+        <h2>Выберите друга</h2>
+            {% csrf_token %}
+            {{ friends|safe }}
+        <h2>Выберите мороженое</h2>
+            {% csrf_token %}
+        <!-- Сюда выведите список сортов мороженого с радио-кнопками. -->
+            {{ icecreams|safe }}
+        <br>
+       <!-- Измените название на кнопке, напишите на ней "Угостить". -->
+          <input type="submit" value="Угостить">
+      </form>
+  </body>
+</html>
