@@ -13,6 +13,9 @@
       <p>
         {{ city_weather }}
       </p>
+      <p>
+        Числовое значение температуры: {{ parsed_temperature }}
+      </p>
       <form action="/" method="post">
         <h2>Выберите друга</h2>
             {% csrf_token %}
