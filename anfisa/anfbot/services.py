@@ -18,21 +18,25 @@ def what_weather(city):
 
 
 def what_temperature(weather):
-#    if (weather == '<сетевая ошибка>' or
-#        weather == '<ошибка на сервере погоды. попробуйте позже>'):
-#        return weather
-#    # Получите часть строки с температурой из weather и сохраните в temperature
-#
-#    parsed_temperature = ''
-#    for char in temperature:
-#        # Температура может быть и отрицательной, предусмотрите это:
-#        # если встретился символ "минус" — добавьте его в переменную parsed_temperature   #
-#        try:
-#            # Попробуйте привести символ char к целому числу.
-#
-#            # Если символ приводится к числу — добавьте его в переменную parsed_temperatur#
-#            parsed_temperature += char
-#        except ValueError:
-#            continue
-#    return parsed_temperature
-    return '44'
+    if (weather == '<сетевая ошибка>' or
+        weather == '<ошибка на сервере погоды. попробуйте позже>'):
+        return weather
+    # Получите часть строки с температурой из weather и сохраните в temperature
+    temperature = weather.split()[1]
+
+    parsed_temperature = ''
+    for char in temperature:
+        if char == '-':
+            parsed_temperature += char
+        # Температура может быть и отрицательной, предусмотрите это:
+        # если встретился символ "минус" — добавьте его в переменную parsed_temperature
+        try:
+            num = int(char)
+            parsed_temperature += char
+            # Попробуйте привести символ char к целому числу.
+            # Если символ приводится к числу — добавьте его в переменную parsed_temperatur#
+        except ValueError:
+            continue
+
+    return parsed_temperature
+#    return '44'
