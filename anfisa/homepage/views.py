@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from icecream.models import icecream_db
 from anfbot.models import friends_db
-from anfbot.services import what_weather
-from anfbot.services import what_temperature
+from anfbot.services import what_weather, what_temperature, what_conclusion
+
 
 
 def index(request):
@@ -14,6 +14,7 @@ def index(request):
     # Добавили выбранное мороженное, которое получим из формы
     selected_icecream = ''
     parsed_temperature = ''
+    conclusion =''
 
     for friend in friends_db:
         # Около каждого имени вставляется radio button,
@@ -39,6 +40,7 @@ def index(request):
         # Запросили погоду в городе city
         weather = what_weather(city)
         parsed_temperature = what_temperature(weather)
+        conclusion = what_conclusion(parsed_temperature)
         # Вместо слова "мороженое" выведите название сорта из запроса.
         friend_output = f'{selected_friend}, тебе прислали {selected_icecream}!'
         city_weather = f'В городе {city} погода: {weather}'
@@ -49,5 +51,6 @@ def index(request):
         'friend_output': friend_output,
         'city_weather': city_weather,
         'parsed_temperature': parsed_temperature,
+        'conclusion': conclusion,
     }
     return render(request, 'homepage/index.html', context)
